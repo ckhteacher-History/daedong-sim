@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>광해군의 물음 — 대동법 시뮬레이션</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 영상 무대: 두 개의 video를 번갈아 써서 전환 시 깜빡임을 줄임 -->
+  <div id="stage">
+    <video id="vidA" class="vid active" playsinline preload="auto"></video>
+    <video id="vidB" class="vid" playsinline preload="auto"></video>
+    <div id="vignette"></div>
+  </div>
+
+  <!-- 1) 시작 화면 (브라우저 자동재생 정책 때문에 첫 클릭이 필요) -->
+  <section id="startScreen" class="overlay show">
+    <div class="start-box">
+      <p class="era">1608년 · 경희궁</p>
+      <h1>광해군의 물음</h1>
+      <p class="sub">왕께서 그대를 부르셨다.<br />백성을 위한 새 법, <b>대동법</b>에 대해 고하라.</p>
+      <input id="nameInput" type="text" maxlength="12" placeholder="이름 (선택)" autocomplete="off" />
+      <button id="startBtn" class="btn-primary">입궐하기</button>
+      <p class="hint">🔊 소리를 켜 주세요</p>
+    </div>
+  </section>
+
+  <!-- 2) 답변 입력 창 -->
+  <section id="answerPanel" class="panel">
+    <div class="panel-inner">
+      <p class="speaker">광해군</p>
+      <p class="question">"어찌하여 대동법을 시행해야 하는지, 그 까닭을 고하라."</p>
+      <textarea id="answerInput" maxlength="600" placeholder="전하, 신이 아뢰옵기를..."></textarea>
+      <div class="panel-foot">
+        <span id="charCount">0 / 600</span>
+        <div>
+          <button id="replayBtn" class="btn-ghost" title="질문 다시 보기">↺ 질문 다시 듣기</button>
+          <button id="submitBtn" class="btn-primary">아뢰기</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 채점 중 표시 -->
+  <section id="loading" class="toast">
+    <span class="dots"><i></i><i></i><i></i></span> 전하께서 듣고 계십니다...
+  </section>
+
+  <!-- 3) 결과 -->
+  <section id="resultPanel" class="panel result">
+    <div class="panel-inner">
+      <p id="resultBadge" class="badge"></p>
+      <p id="resultComment" class="comment"></p>
+      <div id="resultTip" class="tip"></div>
+      <div class="panel-foot end">
+        <button id="retryBtn" class="btn-primary">다시 아뢰기</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="credit">역사교사 최경환</footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
